@@ -4,20 +4,20 @@ use warnings;
 package Module::Starter::Plugin::RTx;
 use base 'Module::Starter::Simple';
 use Carp;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub create_MI_RTx_Makefile_PL {
     my $self        = shift;
     my $main_module = shift || $self->{main_module};
     my $fname       = File::Spec->catfile( $self->{basedir}, 'Makefile.PL' );
-    my $main_module_file = join( '/', 'lib', split /::/, $main_module ) . '.pm';
+    $self->{main_module_file} = join( '/', 'lib', split /::/, $main_module ) . '.pm';
 
     $self->create_file(
         $fname,
         <<EOF
 use inc::Module::Install;
 RTx('$self->{distro}');
-all_from('$main_module_file');
+all_from('$self->{main_module_file}');
 &WriteAll;
 EOF
     );
@@ -98,21 +98,23 @@ sub create_distro {
     $self->{basedir} = $self->{dir} || $self->{distro};
     $self->create_basedir;
 
-    my @files;
-    push @files, $self->create_modules(@modules);
-    push @files, $self->create_ignores;
+    $self->create_modules(@modules);
+    $self->create_ignores;
     my %build_results = $self->create_build();
-    push( @files, @{ $build_results{files} } );
-
-    push @files, $self->create_Changes;
-    push @files, $self->create_README( $build_results{instructions} );
+    $self->create_Changes;
+    $self->create_README;
 
     $self->create_MANIFEST( $build_results{'manifest_method'} );
 
-    # TODO: put files to ignore in a more standard form?
-    # XXX: no need to return the files created
-
     return;
+
+}
+
+sub create_README {
+    my $self = shift;
+    chdir $self->{basedir};
+    symlink( $self->{main_module_file}, 'README.pod' );
+    chdir '..';
 }
 
 sub _module_header {

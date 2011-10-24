@@ -4,7 +4,7 @@
       "sunnavy <sunnavy@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200008, CPAN::Meta::Converter version 2.110930",
+   "generated_by" : "Dist::Zilla version 4.300002, CPAN::Meta::Converter version 2.112150",
    "license" : [
       "perl_5"
    ],
@@ -27,6 +27,12 @@
       }
    },
    "release_status" : "stable",
-   "version" : "0.01"
+   "resources" : {
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/sunnavy/module-starter-plugin-rtx.git"
+      }
+   },
+   "version" : "0.02"
 }
 

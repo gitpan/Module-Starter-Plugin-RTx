@@ -9,23 +9,23 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'Module::Starter for RT extensions',
-  'AUTHOR' => 'sunnavy <sunnavy@gmail.com>',
-  'BUILD_REQUIRES' => {},
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.30'
+  "ABSTRACT" => "Module::Starter for RT extensions",
+  "AUTHOR" => "sunnavy <sunnavy\@gmail.com>",
+  "BUILD_REQUIRES" => {},
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'Module-Starter-Plugin-RTx',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'Module::Starter::Plugin::RTx',
-  'PREREQ_PM' => {
-    'Module::Install::RTx' => '0',
-    'Module::Starter' => '0'
+  "DISTNAME" => "Module-Starter-Plugin-RTx",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "Module::Starter::Plugin::RTx",
+  "PREREQ_PM" => {
+    "Module::Install::RTx" => 0,
+    "Module::Starter" => 0
   },
-  'VERSION' => '0.01',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "0.02",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 
